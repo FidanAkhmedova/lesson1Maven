@@ -1,0 +1,188 @@
+drawCircle(200, 100, 100, 'yellow');
+drawCircle(160, 80, 20, 'white');
+drawCircle(240, 80, 20, 'white');
+drawCircle(240, 80, 7, 'black');
+drawCircle(160, 80, 7, 'black');
+drawCircle(200, 135, 40, 'black');
+drawCircle(200, 130, 40, 'yellow');
+
+//////
+
+let name = prompt("Введите имя: ");
+let birthYear = parseInt( prompt("Введите год рождения: "));
+let currentYear = new Date().getFullYear();
+console.log(name + ", уже в следущем году вам будет " 
++ (currentYear - birthYear+1));
+
+/////// visokosniy ili net
+
+let Year = prompt("Введите год: ");
+if (Year % 100 == 0) {
+  if (Year % 400 == 0)
+    console.log("Год високосный");
+else
+  console.log("Год не исокосный");
+ }
+else if(Year % 4 == 0)
+      console.log("Високосный");
+else
+      console.log("Не високосный");
+//////////
+
+let RoundSquare = prompt("Какую фигуру хотите нарисовать ? 1.Круг 2.Квадрат");
+if(RoundSquare == 1) {
+  	let radius = prompt("Введите радиус круга ");
+    drawCircle(200, 200, radius, 'pink');
+	}
+else {
+	let width = prompt("Введите сторону квадрата ");
+	drawRect(200, 200, width, width, 'red'); }
+
+/////////Угадать загаданное число
+
+let target = Math.round(Math.random() * 10);
+let guessedNumber;
+do{
+  
+ guessedNumber = prompt("Введите число: ");
+  if(guessedNumber > target)
+    console.log("Загаданное число меньше " + guessedNumber);
+  else if(guessedNumber < target)
+    console.log("Загаданное число больше " + guessedNumber);
+  else {
+    console.log("Угадали!");
+    break;}}
+while(true);
+
+/////////////factorial
+
+let n = prompt('Введите число');
+let factorial = 1;
+
+for(let i = 2; i <= n; i=i+1) {
+	factorial = factorial * i; 
+
+console.log('factorial of ' + factorial);}
+
+//////////////шахматная доска
+
+let isBlack = true;
+for(let y = 0; y < 3; y++){
+  console.log('begin');
+for(let x = 0; x < 3; x++){	
+  let color = 'white';
+  if(isBlack){
+  color = 'black';
+    isBlack = false;
+  }
+  else {
+  isBlack = true;
+  }
+    console.log('y = ' + y + ' x = ' + x + ' color is ' + color);
+  drawRect(x*50, y*50, 50, 50, color);
+  }
+}
+////////////////доска крестики нолики
+
+drawLine(100, 100, 400, 100, 'black');
+drawLine(100, 200, 400, 200, 'black');
+drawLine(100, 300, 400, 300, 'black');
+drawLine(100, 400, 400, 400, 'black');
+
+drawLine(100, 100, 100, 400, 'black');
+drawLine(200, 100, 200, 400, 'black');
+drawLine(300, 100, 300, 400, 'black');
+drawLine(400, 100, 400, 400, 'black');
+
+///////////////...годовой процент
+
+let depositAmount = parseFloat(prompt('Введите размер вклада:'));
+let annualPercentage = parseFloat(prompt('Введите годовой процент:'));
+let monthAmount = parseFloat(prompt('Введите количество месяцев: '));
+    for(let k = 0; k < monthAmount; k=k+1){		
+		depositAmount= depositAmount + depositAmount *annualPercentage/1200;
+        	console.log(dep + ' = dep');
+
+}
+////////////////функция с факториалом
+
+let n1 = prompt('Введите число');
+let n2 = prompt('Введите число');
+let sum = 0;
+
+function factorial(n){
+	let factor = 1;  
+	for(let i = 2; i <= n; i++){
+		factor = factor * i; }
+    	console.log('factorial is ' + factor);
+  		return factor;
+  
+	}
+
+sum = factorial(n1) + factorial(n2);
+console.log('sum is ' + sum);
+
+//////////////////годовой процент с функцией
+
+var depositAmount = parseFloat(prompt('Введите размер вклада:'));
+var annualPercentage = parseFloat(prompt('Введите годовой процент:'));
+var monthAmount = parseFloat(prompt('Введите количество месяцев: '));
+deposit(monthAmount, annualPercentage, depositAmount);
+function deposit(month, percentage, dep){
+    for(let k = 0; k < month; k++){
+		dep = dep + ((dep * percentage)/1200);
+        console.log(dep + ' = dep');
+              console.log(dep * percentage + ' = dep*percentage');
+
+    }
+}	
+
+//////////////////////крестики нолики 1 версия
+let x1 = 250;
+let y1 = 100;
+let x2 = 450;
+let y2 = 150;
+let x = x1+50;
+let xx = x2-50;
+let width;
+for(let i = 0; i < 2; i++) {
+  
+
+	drawLine(xx+25*i, y1-25*i, xx+25*i, x+25*i, 'black');//right
+	drawLine(x-25*i, y1-25*i, x-25*i, x+25*i, 'black');//left
+  	drawLine(x1-25*i, x1+25*i, x2+25*i, x1+25*i, 'black');//down
+	drawLine(x1-25*i, y2-25*i, x2+25*i, y2-25*i, 'black');//up
+		
+}
+//////////////////////крестики нолики 2 версия
+let x1 = 250;
+let y1 = 100;
+let x2 = 450;
+let y2 = 150;
+let x = x1+50;
+let xx = x2-50;
+let width = 0;
+
+for(let i = 0; i < 3; i++) {
+
+    let yUp = y2-25*i;
+    let yDown = x1+25*i;
+    let xLeft = x-25*i;
+    let xRight = xx+25*i;
+    width = yDown - yUp;
+	drawLine(xx+25*i, yUp-width, xx+25*i, yDown+width, 'black');//right
+	drawLine(x-25*i, yUp-width, x-25*i, yDown+width, 'black');//left
+  	drawLine(xLeft-width, x1+25*i, xRight+width, x1+25*i, 'black');//down
+	drawLine(xLeft-width, y2-25*i, xRight+width, y2-25*i, 'black');//up
+		
+}
+
+Домашнее задание:
+
+Пройти финальный тест для проверки полученных знаний.
+
+Реализовать текстовый вариант игры «Рулетка».
+
+В начале игры у пользователя на балансе есть 1000 кредитов, перед каждым «броском» шарика пользователь должен ввести объект ставки: одно из чисел в диапазоне от 0 до 36 включительно или цвет, красный или чёрный.
+
+Кроме этого, необходимо запросить у пользователя размер ставки, который не должен превышать текущее количество кредитов на балансе пользователя. После того, как пользователь сделал ставку, программа должна сгенерировать число в указанном диапазоне и вывести пользователю следующую информацию: выпавшее число, его цвет, объект и размер ставки пользователя, выигрыш пользователя, если он есть, и текущий баланс. Игра останавливается при вводе пользователем слова «quit» на этапе формирования ставки или при уменьшении баланса до нуля. Выигрыш в рулетке при угадывании цвета равен двум ставкам, при угадывании числа 35-ти ставкам.
